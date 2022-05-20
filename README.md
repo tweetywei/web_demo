@@ -7,11 +7,13 @@ The main functions of this web site are:
 
 
 # HOW TO BUILD
+```
 docker build -t web_demo .
-
+```
 # HOW TO RUN
+```
 docker run -d --name web_demo_con -p 8000:8000 web_demo
-
+```
 Then you could access the website at 127.0.0.1:8000/dashboard/courses
 
 
