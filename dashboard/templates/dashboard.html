@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <p>The queryset object:</p>
+    {{ ranking }}
+
+    <div>
+        <canvas id="ranking"></canvas>
+    </div>
+    <div>
+        <canvas id="grade"></canvas>
+    </div>
+    {{ ranking|json_script:"ranking_list" }}
+    {{ grade|json_script:"grade_list" }}
+    <script>
+        const ranking_list = JSON.parse(document.getElementById('ranking_list').textContent);
+        const labels_ranking = [
+          '0',
+          '1',
+          '2',
+          '3',
+          '4',
+          '5',
+        ];
+      
+        const data_ranking = {
+          labels: labels_ranking,
+          datasets: [{
+            label: 'Course Ranking',
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(255, 205, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(201, 203, 207, 0.2)'
+            ],
+            borderColor: [
+                'rgb(255, 99, 132)',
+                'rgb(255, 159, 64)',
+                'rgb(255, 205, 86)',
+                'rgb(75, 192, 192)',
+                'rgb(54, 162, 235)',
+                'rgb(153, 102, 255)',
+                'rgb(201, 203, 207)'
+            ],
+            borderWidth: 1,
+            data: ranking_list,
+          }]
+        };
+      
+        const config_ranking = {
+          type: 'bar',
+          data: data_ranking,
+          options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+          }
+        };
+
+        const grade_list = JSON.parse(document.getElementById('grade_list').textContent);
+        const labels_grade = [
+          '[0.0-1.0)',
+          '[1.0-2.0)',
+          '[2.0-3.0)',
+          '[3.0-4.0)',
+          '[4.0-5.0)',
+          '[5.0-6.0)',
+          '6.0'
+        ];
+      
+        const data_grade = {
+          labels: labels_grade,
+          datasets: [{
+            label: 'Grade Distribution',
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(255, 205, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(201, 203, 207, 0.2)'
+            ],
+            borderColor: [
+                'rgb(255, 99, 132)',
+                'rgb(255, 159, 64)',
+                'rgb(255, 205, 86)',
+                'rgb(75, 192, 192)',
+                'rgb(54, 162, 235)',
+                'rgb(153, 102, 255)',
+                'rgb(201, 203, 207)'
+            ],
+            borderWidth: 1,
+            data: grade_list,
+          }]
+        };
+      
+        const config_grade = {
+          type: 'bar',
+          data: data_grade,
+          options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+          }
+        };
+
+        const ranking = new Chart(
+          document.getElementById('ranking'),
+          config_ranking
+        );
+        const grade = new Chart(
+          document.getElementById('grade'),
+          config_grade
+        );
+      </script>
+</body>
+</html>        
