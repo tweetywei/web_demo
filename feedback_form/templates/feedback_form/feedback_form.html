@@ -3,9 +3,29 @@
 {% block title %}Feedback Form{% endblock %}
 
 {% block body %}
-<form action="{% url 'feedback_form:home' %}" method="POST">
+
+{% load crispy_forms_tags %} 
+
+<form action="{% url 'feedback_form:home' %}" method="POST" class="row justify-content-md-center">
     {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" />
+    <div class="col-10 mt-5">
+        <h2 class="text-muted"> Course Feedback Form </h1>
+        <hr/>
+    </div>
+    <div class="col-10  mt-3">
+        {{ form.student_name|as_crispy_field }}
+    </div>
+    <div class="col-10">
+        {{ form.course|as_crispy_field }}
+    </div>
+    <div class="col-10">
+        {{ form.grade|as_crispy_field }}
+    </div>
+    <div class="col-10">
+        {{ form.ranking_level|as_crispy_field }}
+    </div>
+    <div class="col-10">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
 </form>
 {% endblock %}

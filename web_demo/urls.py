@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import include, path, re_path
 
 urlpatterns = [
+    re_path(r'^dashboard/', include('dashboard.urls')),
     re_path(r'^', include('feedback_form.urls')),
-    path('dashboard/', include('dashboard.urls')),
     path('admin/', admin.site.urls),
 ]

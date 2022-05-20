@@ -2,7 +2,11 @@
 
 {% block title %}Thanks{% endblock %}
 
+{% load crispy_forms_tags %} 
 {% block body %}
-<h1>Thanks for your response.</h1>
-<p><a href="{% url 'feedback_form:home' %}">Response again?</a></p>
+<div  class="row justify-content-md-center">
+    <div class="col-10 mt-5">
+        <h2 class="text-muted"> Thanks for your feedback! </h1>
+    </div>
+</div>
 {% endblock %}
