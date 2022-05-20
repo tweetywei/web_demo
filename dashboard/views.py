@@ -16,16 +16,19 @@ def course_list(request):
     return HttpResponse(template.render(context, request))
 
 def dashboard(request, course_id):
+    course_name = Course.objects.get(pk=course_id)
+    print(course_name)
     feedback_data = Feedback.objects.filter(course_id=course_id).values()
     template = loader.get_template('dashboard.html')
     ranking = [0] * 6
     grade = [0] * 7
 
     for record in feedback_data:
-        ranking[record['ranking_level']] += 1
+        ranking[int(record['ranking_level'])] += 1
         grade[int(record['grade'])] += 1
 
     context = {
+        'course_name':course_name,
         'ranking': ranking,
         'grade' : grade,
         'feedback': feedback_data

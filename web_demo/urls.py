@@ -18,6 +18,6 @@ from django.urls import include, path, re_path
 
 urlpatterns = [
     re_path(r'^dashboard/', include('dashboard.urls')),
-    re_path(r'^', include('feedback_form.urls')),
+    re_path(r'^feedback/', include('feedback_form.urls')),
     path('admin/', admin.site.urls),
 ]

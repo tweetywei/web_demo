@@ -20,9 +20,15 @@
     </div>
     <div class="col-10">
         {{ form.grade|as_crispy_field }}
+        <p style="font-size:70%; color:grey;">Grade must be numbers between 0-6</p>
     </div>
+    <p></p>
     <div class="col-10">
         {{ form.ranking_level|as_crispy_field }}
+        <p style="font-size:70%; color:grey;">Ranking must be integers between 0-5</p>
+    </div>
+    <div class="col-10">
+        <p style= "color:red;">{{ error }}</p>
     </div>
     <div class="col-10">
         <button type="submit" class="btn btn-primary">Submit</button>
